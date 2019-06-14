@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% include 'menu.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                Da: <em>{{ user.name }}</em>
+                <br>
+
+                {{ form_start(form) }}
+                    {{ form_widget(form.message , {'attr' : {'class' : 'form-control' , 'rows' : 5 , 'placeholder' : 'Messaggio' } }) }}
+                    <div class="form-error">{{ form_errors(form.message) }}</div>
+
+                    <div class="margin2"></div>
+                    <div class="text-right">
+                        {{ form_widget(form.submit , {'label' : 'Salva' , 'attr' : {'class' : 'btn btn-danger'}}) }}
+                    </div>
+
+                {{ form_end(form) }}
+
+                {% if ticket and ticket.status != 3 and ticket.id>0 %}
+                    <hr>
+                    <div class="text-right">
+                        {% if user.getRole() == 'ROLE_ADMIN' and ticket.getOwnerAdmin() == null %}
+                            <a href="{{ url('assign-ticket' , {'id' : ticket.id}) }}" class="btn btn-link">Prendi in carico ticket</a>
+                        {% elseif user.getRole() == 'ROLE_ADMIN' and ticket.getOwnerAdmin() == user %}
+                            <a href="{{ url('assign-ticket-other-admin', {'id' : ticket.id}) }}" class="btn btn-link">Assegna il ticket ad un altro amministratore</a>
+                        {% endif %}
+                        <a href="{{ url('close-ticket' , {'id' : ticket.id}) }}" class="btn btn-warning">Chiudi ticket</a>
+                    </div>
+                {% endif %}
+
+                <hr>
+
+                {% for message in listMessages %}
+                    <div class="box message">
+                        <div class="date">
+                            {{ message.createdAt|date('d/m/Y') }}
+                        </div>
+                        <div class="author">
+                            {{ message.authorOwner().name|default('-') }}
+                        </div>
+                        <p>{{ message.message }}</p>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

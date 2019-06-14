@@ -1,0 +1,104 @@
+.margin1 {
+  display: block;
+  height: 5px;
+}
+
+.margin2 {
+  display: block;
+  height: 10px;
+}
+
+.margin3 {
+  display: block;
+  height: 15px;
+}
+
+.margin4 {
+  display: block;
+  height: 20px;
+}
+
+.margin5 {
+  display: block;
+  height: 25px;
+}
+
+.margin6 {
+  display: block;
+  height: 30px;
+}
+
+.margin7 {
+  display: block;
+  height: 35px;
+}
+
+.margin8 {
+  display: block;
+  height: 40px;
+}
+
+.margin9 {
+  display: block;
+  height: 45px;
+}
+
+.margin10 {
+  display: block;
+  height: 50px;
+}
+
+#LoginBox {
+  margin-top: 200px;
+}
+
+#registerBox {
+  margin-top: 100px;
+}
+
+.box {
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.box.message {
+  margin-bottom: 30px;
+}
+
+.box.message .author {
+  font-style: italic;
+  display: block;
+}
+
+.box.message .date {
+  float: right;
+  font-weight: bold;
+}
+
+.box.message > p {
+  padding: 15px;
+}
+
+.form-error {
+  display: block;
+}
+
+.form-error > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 11px;
+  color: #990000;
+  list-style: none;
+}
+
+.form-error > ul > li {
+  display: block;
+}
+
+.note {
+  font-size: .9rem;
+}

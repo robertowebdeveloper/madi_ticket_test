@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <section id="LoginBox" class="box">
+                    <h4 class="text-center">ACCESSO</h4>
+                    <hr>
+
+                    {% if app.request.get('registered') == "1" %}
+                        <div class="alert alert-success">
+                            Registrazione completata
+                        </div>
+                    {% endif %}
+
+                    {{ form_start(form) }}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        {{ form_widget(form.email , { 'attr' : {'class' : 'form-control' , 'placeholder' : 'e-mail' , 'type' : 'email' } }) }}
+                        <div class="margin1"></div>
+                        {{ form_widget(form.password , {'attr' : {'class' : 'form-control' , 'placeholder' : 'password' } }) }}
+                        <div class="margin2"></div>
+                        <div class="text-center">
+                            {{ form_widget(form.submit , {'attr' : {'class' : 'btn btn-primary'} }) }}
+                        </div>
+
+                        {% if error %}
+                            <div class="margin2"></div>
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                    {{ form_end(form) }}
+                    <div class="text-center text-sm-right">
+                        <a href="{{ url('register') }}">Registrati</a>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Madisoft Ticket test :: Roberto Parrella{% endblock %}</title>
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/layout.css') }}" />
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+
+        <script type="text/javascript" src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('node_modules/popper.js/dist/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

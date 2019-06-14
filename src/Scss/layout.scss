@@ -1,0 +1,62 @@
+//****** PARAMETERS *****
+$box-bg: #f4f4f4;
+$gutter: 15px;
+$radius: 8px;
+$shadow-light: 0px 5px 15px rgba(0,0,0,10/100);
+
+$error: #990000;
+//****** /PARAMETERS ****
+
+@for $i from 1 through 10 {
+  .margin#{$i} {
+    display: block;
+    height: (5px * $i);
+  }
+}
+
+#LoginBox {
+  margin-top: 200px;
+}
+#registerBox{
+  margin-top: 100px;
+}
+.box{
+  background-color: $box-bg;
+  padding: $gutter;
+  border-radius: $radius;
+  box-sizing: border-box;
+  box-shadow: $shadow-light;
+
+  &.message {
+    margin-bottom: ($gutter*2);
+    .author{
+      font-style: italic;
+      display: block;
+    }
+    .date{
+      float: right;
+      font-weight: bold;
+    }
+    > p{
+      padding: $gutter;
+    }
+  }
+}
+.form-error{
+  display: block;
+  > ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+    color: $error;
+    list-style: none;
+
+    > li{
+      display: block;
+    }
+  }
+}
+.note{
+  font-size: .9rem;
+}

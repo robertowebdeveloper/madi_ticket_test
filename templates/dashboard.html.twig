@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% include 'menu.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                {% if app.request.get('ticketClosed')  %}
+                    <div class="alert alert-success">
+                        Ticket chiuso
+                    </div>
+                {% endif %}
+                {% if app.request.get('ticketAssigned')  %}
+                    <div class="alert alert-success">
+                        Ticket preso in carico
+                    </div>
+                {% endif %}
+
+
+                <div class="alert alert-secondary">
+
+                    {{ form_start(form_notify) }}
+                        <label>
+                            {{ form_widget(form_notify.smsNotifyPermission) }}
+                            Consenti invio delle notifiche per SMS
+                        </label>
+                        <br>
+                        <label>
+                            {{ form_widget(form_notify.pushNotifyPermission) }}
+                            Consenti invio delle notifiche per Push Notification
+                        </label>
+                        <br>
+
+                        {{ form_widget(form_notify.submit , {'attr' : {'class' : 'btn btn-danger'}, 'label' : 'Salva preferenze'}) }}
+
+                    {{ form_end(form_notify) }}
+                </div>
+                <hr>
+
+                {% if list|length > 0 %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="30">#</th>
+                                <th>Aperto da</th>
+                                <th>Assegnato a</th>
+                                <th width="150">Data apertura</th>
+                                <th width="120">Stato</th>
+                                <th width="200">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for t in list %}
+                                <tr>
+                                    <td>{{ t.id }}</td>
+                                    <td>{{ t.getOpenFromUser().name }}</td>
+                                    <td>{{ t.getOwnerAdmin().name|default('-') }}</td>
+                                    <td>{{ t.dateOpenedAt|date("d/m/Y") }}</td>
+                                    <td>{{ t.getStatusDescription() }}</td>
+                                    <td>
+                                        {% if t.status != 3 %}
+                                            <a href="{{ url('edit-ticket' , {'id' : t.id}) }}">Rispondi / modifica</a>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <h3 class="text-center">Nessun ticket presente</h3>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

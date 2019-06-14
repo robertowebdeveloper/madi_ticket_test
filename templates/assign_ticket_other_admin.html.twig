@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% include 'menu.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                {% if admin_list|length > 1 %}
+                    <p>Assegna ticket ad un altro amministratore</p>
+                    <ul>
+                        {% for admin in admin_list %}
+                            {% if admin.id != user.id %}
+                            <li>
+                                <a href="{{ url('assign-ticket-other-admin' , {'id' : ticket_id }) }}?to_user={{ admin.id }}" class="btn btn-info">{{ admin.name }} ({{ admin.email }})</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <h3 class="text-center">Nessun amministratore presente</h3>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

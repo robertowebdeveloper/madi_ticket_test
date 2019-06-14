@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="margin4"></div>
+    <div class="row">
+        <div class="col-8">
+            <h3>Madisoft Ticket Test</h3>
+        </div>
+        <div class="col-4 text-right">
+            <a href="{{ url('logout') }}" class="btn btn-outline-primary">Logout</a>
+        </div>
+        <div class="col-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ url('dashboard') }}" class="btn btn-link">Elenco ticket</a>
+            {% if is_granted('ROLE_USER') %}
+                | <a href="{{ url('edit-ticket') }}" class="btn btn-link">Nuovo ticket</a>
+            {% endif %}
+            <hr>
+        </div>
+    </div>
+</div>

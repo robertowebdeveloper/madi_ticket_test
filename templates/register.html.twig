@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+
+                <section id="registerBox" class="box">
+                    <h4 class="text-center">REGISTRAZIONE</h4>
+                    <hr>
+                    {{ form_start(form) }}
+
+                        {{ form_widget(form.name , {'attr' : {'class' : 'form-control' , 'placeholder' : 'nome' } }) }}
+                        <div class="form-error">{{ form_errors(form.name) }}</div>
+
+                        <div class="margin1"></div>
+                        {{ form_widget(form.email , {'attr' : {'class' : 'form-control' , 'placeholder' : 'e-mail' , 'type' : 'email' } }) }}
+                        <div class="form-error">{{ form_errors(form.email) }}</div>
+
+                        <div class="margin1"></div>
+                        {{ form_widget(form.mobile , {'attr' : {'class' : 'form-control' , 'placeholder' : 'Cellulare' } }) }}
+                        <div class="form-error">{{ form_errors(form.mobile) }}</div>
+
+                        <div class="margin1"></div>
+                        {{ form_widget(form.password , {'attr' : {'class' : 'form-control' , 'placeholder' : 'password' } }) }}
+                        <div class="form-error">{{ form_errors(form.password) }}</div>
+
+                        <div class="margin2"></div>
+                        {{ form_label(form.role) }}
+                        {{ form_widget(form.role, {'attr' : {'class' : 'form-control' } }) }}
+
+                        <div class="margin2"></div>
+                        <div class="text-center">
+                            {{ form_widget(form.submit , {'attr' : {'class' : 'btn btn-danger'} }) }}
+                        </div>
+
+
+                        <div class="text-center text-sm-right">
+                            <a href="{{ url('index') }}">Login</a>
+                        </div>
+
+                    {{ form_end(form) }}
+
+                    <div class="margin3"></div>
+                    <p class="alert alert-info note">
+                        <b>Nota</b>: la registrazione è semplificata, non ha verifiche e controlli sull'indirizzo e-mail / cellulare né procedure particolari per autorizzare gli utenti "amministratori".<br>
+                        <em>Il software è a scopo dimostrativo.</em>
+                    </p>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
